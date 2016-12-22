@@ -1,19 +1,32 @@
 package Console;
 
+import java.io.FileInputStream;
+import java.io.IOException;
+import java.util.Properties;
 import java.util.Scanner;
 
 public class Main {
 
 	public static void main(String[] args){
+		FileInputStream labelsFile;
+		Properties property = new Properties();
+		
 		while (true) {
-			System.out.println("--------Menu--------");
-			System.out.println("1. Add user");
-			System.out.println("2. Show all users");
-			System.out.println("3. Get user by username");
-			System.out.println("4. Show admins");
-			System.out.println("5. Show simple users");
-			System.out.println("6. Change admin role");
-			System.out.println("Enter 0 for exit");
+			try {
+				labelsFile = new FileInputStream("properties/labels.properties");
+				property.load(labelsFile);
+				
+				System.out.println(property.getProperty("menu_lbl"));
+				System.out.println(property.getProperty("add_user_lbl"));
+				System.out.println(property.getProperty("show_all_users_lbl"));
+				System.out.println(property.getProperty("get_user_lbl"));
+				System.out.println(property.getProperty("show_admins_lbl"));
+				System.out.println(property.getProperty("show_users_lbl"));
+				System.out.println(property.getProperty("change_role_lbl"));
+				System.out.println(property.getProperty("exit_lbl"));
+			} catch(IOException e) {
+				System.out.println(e.getMessage());
+			}
 			
 			Scanner in = new Scanner(System.in);
 			int choice = in.nextInt();

@@ -19,11 +19,12 @@ public class DBConnection {
 		}
 		
 		try {
-			configFile = new FileInputStream("src/Console/config.properties");
+			configFile = new FileInputStream("properties/config.properties");
 			property.load(configFile);
 			
 			try {
-				dbConnection = DriverManager.getConnection(property.getProperty("db.host"), property.getProperty("db.login"), property.getProperty("db.password"));
+				dbConnection = DriverManager.getConnection(property.getProperty("db.host"), 
+						property.getProperty("db.login"), property.getProperty("db.password"));
 				return dbConnection;
 			} catch (SQLException e) {
 				System.out.println(e.getMessage());
