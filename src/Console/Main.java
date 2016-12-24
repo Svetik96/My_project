@@ -33,22 +33,22 @@ public class Main {
 			
 			switch (choice) {
 			case 1:
-				UserMethods.addUser();
+				UserDAO.addUser();
 				break;
 			case 2:
-				UserMethods.getAllUsers();
+				UserDAO.getAllUsers();
 				break;
 			case 3:
-				UserMethods.getUserByUsername();
+				UserDAO.getUserByUsername();
 				break;
 			case 4:
-				UserMethods.getAdmins();
+				UserDAO.getAdmins();
 				break;
 			case 5:
-				UserMethods.getSimpleUser();
+				UserDAO.getSimpleUser();
 				break;
 			case 6:
-				UserMethods.changeAdminRole();
+				UserDAO.changeAdminRole();
 				break;
 			default:
 				break;

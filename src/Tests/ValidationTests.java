@@ -1,8 +1,8 @@
-package Console;
+package Tests;
 
 import static org.junit.Assert.assertEquals;
-
 import org.junit.Test;
+import Console.Validation;
 
 public class ValidationTests {
 
