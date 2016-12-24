@@ -53,7 +53,7 @@ public class Validation {
 	}
 	
 	public static boolean checkEmail(String email){
-		Pattern p = Pattern.compile("[a-zA-Z]{1}[a-zA-Z\\d\\u002E\\u005F]*+@[a-zA-Z]*+\\u002E{1}+[a-zA-Z]*");
+		Pattern p = Pattern.compile("[a-zA-Z]{1}[a-zA-Z\\d\\u002E\\u005F\\u002D]*+@[A-Za-z0-9-]+(\\.[A-Za-z]{2,})$");
 		Matcher m = p.matcher(email);
 		return m.matches();
 	}
