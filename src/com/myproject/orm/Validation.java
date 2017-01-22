@@ -1,4 +1,4 @@
-package Console;
+package com.myproject.orm;
 
 import java.sql.Connection;
 import java.sql.ResultSet;
@@ -17,35 +17,48 @@ public class Validation {
 		Statement statement = null;
 		
 		boolean b = true;
-		List<String> names = new ArrayList();
-		String allUsernames = "SELECT username FROM users";
+		int count=0;
+		String query = "SELECT COUNT(id) FROM users WHERE username='" + username + "'";
 		
 		try {
 			dbConnection = DBConnection.getConnection();
 			statement = dbConnection.createStatement();
 			
-			ResultSet rs = statement.executeQuery(allUsernames);
+			ResultSet rs = statement.executeQuery(query);
 			
 			while (rs.next()) {
-				names.add(rs.getString(1));
+				count = rs.getInt(1);
 			}
 			rs.close();
-			statement.close();
-			dbConnection.close();
 		} catch (SQLException e) {
 			System.out.println(e.getMessage());
-		}
-		
-		for (int i=0; i<names.size(); i++) {
-			if (username.equals(names.get(i))) {
-				b = false;
-				break;
+		} finally {
+			try {
+				if (statement != null) {
+					statement.close();
+				}
+			} catch (SQLException e) {
+				System.out.println(e.getMessage());
+			}
+			
+			try {
+				if (dbConnection != null) {
+					dbConnection.close();
+				}
+			} catch (SQLException e) {
+				System.out.println(e.getMessage());
 			}
 		}
-			
+		
+		
+		
+		if (count > 0) {
+			b = false;
+		}
+		
 		return b;
 	}
-	
+		
 	public static boolean checkUsernameAndPassword(String line){
 		Pattern p = Pattern.compile("[a-zA-Z]{1}[a-zA-Z\\d\\u005F]*[a-zA-Z\\d]{1}");
 		Matcher m = p.matcher(line);

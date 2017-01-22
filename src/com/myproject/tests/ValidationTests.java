@@ -1,8 +1,9 @@
-package Tests;
+package com.myproject.tests;
 
 import static org.junit.Assert.assertEquals;
 import org.junit.Test;
-import Console.Validation;
+
+import com.myproject.orm.Validation;
 
 public class ValidationTests {
 

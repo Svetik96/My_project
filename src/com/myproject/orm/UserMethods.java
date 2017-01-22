@@ -1,4 +1,4 @@
-package Console;
+package com.myproject.orm;
 
 import java.sql.Connection;
 import java.sql.ResultSet;

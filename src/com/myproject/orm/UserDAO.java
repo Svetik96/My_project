@@ -1,4 +1,4 @@
-package Console;
+package com.myproject.orm;
 
 import java.sql.Connection;
 import java.sql.ResultSet;
@@ -7,29 +7,11 @@ import java.sql.Statement;
 
 public class UserDAO {
 	
-	static Connection dbConnection = null;
-	static Statement statement = null;
-	
-	public static void addUser(){		
-		User user = new User();
+	public static void addUser(){
+		Connection dbConnection = null;
+		Statement statement = null;
 				
-		System.out.print("Username: ");
-		user.setUsername(Validation.validUsername(ScannerCommandAdapter.newUsername()));
-				
-		System.out.print("Password: ");
-		user.setPassword(Validation.validPassword(ScannerCommandAdapter.newPassword()));
-		
-		System.out.print("Email: ");
-		user.setEmail(Validation.validEmail(ScannerCommandAdapter.newEmail()));
-						
-		System.out.print("FirstName: ");
-		user.setFirstName(ScannerCommandAdapter.newFirstname());
-		
-		System.out.print("Surname: ");
-		user.setSurname(ScannerCommandAdapter.newSurname());
-		
-		System.out.print("Admin role (true or false): ");
-		user.setRole(ScannerCommandAdapter.newRole());
+		User user = UserAction.createUser();
 		
 		String addUser = "INSERT INTO users "
 				+ "(username, password, email, firstName, surname, role) "
@@ -44,15 +26,31 @@ public class UserDAO {
 			
 			statement.executeUpdate(addUser);
 			System.out.println("New user created");
-			
-			statement.close();
-			dbConnection.close();
 		} catch (SQLException e) {
 			System.out.println(e.getMessage());
+		} finally {
+			try {
+				if (statement != null) {
+					statement.close();
+				}
+			} catch (SQLException e) {
+				System.out.println(e.getMessage());
+			}
+			
+			try {
+				if (dbConnection != null) {
+					dbConnection.close();
+				}
+			} catch (SQLException e) {
+				System.out.println(e.getMessage());
+			}
 		}
 	}
 	
 	public static void getAllUsers(){
+		Connection dbConnection = null;
+		Statement statement = null;
+		
 		String selectUser = "SELECT * FROM users";
 		try {
 			dbConnection = DBConnection.getConnection();
@@ -68,14 +66,31 @@ public class UserDAO {
 				System.out.println();
 			}
 			rs.close();
-			statement.close();
-			dbConnection.close();
 		} catch (SQLException e) {
 			System.out.println(e.getMessage());
+		} finally {
+			try {
+				if (statement != null) {
+					statement.close();
+				}
+			} catch (SQLException e) {
+				System.out.println(e.getMessage());
+			}
+			
+			try {
+				if (dbConnection != null) {
+					dbConnection.close();
+				}
+			} catch (SQLException e) {
+				System.out.println(e.getMessage());
+			}
 		}
 	}
 	
 	public static void getUserByUsername(){
+		Connection dbConnection = null;
+		Statement statement = null;
+		
 		System.out.print("Username for search: ");
 		String usernameSearch = ScannerCommandAdapter.newUsername();
 		
@@ -97,14 +112,31 @@ public class UserDAO {
 			}
 			
 			rs.close();
-			statement.close();
-			dbConnection.close();
 		} catch (SQLException e) {
 			System.out.println(e.getMessage());
+		} finally {
+			try {
+				if (statement != null) {
+					statement.close();
+				}
+			} catch (SQLException e) {
+				System.out.println(e.getMessage());
+			}
+			
+			try {
+				if (dbConnection != null) {
+					dbConnection.close();
+				}
+			} catch (SQLException e) {
+				System.out.println(e.getMessage());
+			}
 		}
 	}
 	
 	public static void getAdmins(){
+		Connection dbConnection = null;
+		Statement statement = null;
+		
 		String selectUser = "SELECT * FROM users WHERE role = 'true'";
 		try {
 			dbConnection = DBConnection.getConnection();
@@ -119,14 +151,31 @@ public class UserDAO {
 				System.out.println();
 			}
 			rs.close();
-			statement.close();
-			dbConnection.close();
 		} catch (SQLException e) {
 			System.out.println(e.getMessage());
+		} finally {
+			try {
+				if (statement != null) {
+					statement.close();
+				}
+			} catch (SQLException e) {
+				System.out.println(e.getMessage());
+			}
+			
+			try {
+				if (dbConnection != null) {
+					dbConnection.close();
+				}
+			} catch (SQLException e) {
+				System.out.println(e.getMessage());
+			}
 		}
 	}
 	
 	public static void getSimpleUser(){
+		Connection dbConnection = null;
+		Statement statement = null;
+		
 		String selectUser = "SELECT * FROM users WHERE role = 'false'";
 		try {
 			dbConnection = DBConnection.getConnection();
@@ -141,14 +190,31 @@ public class UserDAO {
 				System.out.println();
 			}
 			rs.close();
-			statement.close();
-			dbConnection.close();
 		} catch (SQLException e) {
 			System.out.println(e.getMessage());
+		} finally {
+			try {
+				if (statement != null) {
+					statement.close();
+				}
+			} catch (SQLException e) {
+				System.out.println(e.getMessage());
+			}
+			
+			try {
+				if (dbConnection != null) {
+					dbConnection.close();
+				}
+			} catch (SQLException e) {
+				System.out.println(e.getMessage());
+			}
 		}
 	}
 	
 	public static void changeAdminRole(){
+		Connection dbConnection = null;
+		Statement statement = null;
+		
 		System.out.print("Enter username: ");
 		String usernameSearch = ScannerCommandAdapter.newUsername();
 		System.out.print("Enter adminRole (true or false): ");
@@ -161,11 +227,24 @@ public class UserDAO {
 			statement = dbConnection.createStatement();
 			
 			statement.executeUpdate(updateUser);
-			
-			statement.close();
-			dbConnection.close();
 		} catch (SQLException e) {
 			System.out.println(e.getMessage());
+		} finally {
+			try {
+				if (statement != null) {
+					statement.close();
+				}
+			} catch (SQLException e) {
+				System.out.println(e.getMessage());
+			}
+			
+			try {
+				if (dbConnection != null) {
+					dbConnection.close();
+				}
+			} catch (SQLException e) {
+				System.out.println(e.getMessage());
+			}
 		}
 		
 		System.out.println("Admin updated");

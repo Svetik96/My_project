@@ -1,4 +1,4 @@
-package Console;
+package com.myproject.orm;
 
 import java.io.FileInputStream;
 import java.io.IOException;

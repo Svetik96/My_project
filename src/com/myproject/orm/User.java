@@ -1,4 +1,4 @@
-package Console;
+package com.myproject.orm;
 
 public class User implements java.io.Serializable {
 	
