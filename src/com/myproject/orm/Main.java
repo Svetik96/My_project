@@ -5,6 +5,7 @@ import java.io.IOException;
 import java.util.Properties;
 import java.util.Scanner;
 
+
 public class Main {
 
 	public static void main(String[] args){
@@ -24,6 +25,10 @@ public class Main {
 				System.out.println(property.getProperty("show_users_lbl"));
 				System.out.println(property.getProperty("change_role_lbl"));
 				System.out.println(property.getProperty("exit_lbl"));
+				System.out.println(property.getProperty("login_1"));
+				System.out.println(property.getProperty("login_2"));
+				System.out.println(property.getProperty("login_3"));
+				System.out.println(property.getProperty("login_4"));
 			} catch(IOException e) {
 				System.out.println(e.getMessage());
 			}
@@ -49,6 +54,18 @@ public class Main {
 				break;
 			case 6:
 				UserDAO.changeAdminRole();
+				break;
+			case 7:
+				Autorization_1.Login_1();
+				break;
+			case 8:
+				Autorization_1.Login_2();
+				break;
+			case 9:
+				Autorization_1.Login_3();
+				break;
+			case 10:
+				Autorization_1.Login_4();
 				break;
 			default:
 				break;

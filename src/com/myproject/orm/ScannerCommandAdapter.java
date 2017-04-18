@@ -39,4 +39,10 @@ public class ScannerCommandAdapter {
 		boolean role = in.nextBoolean();
 		return role;
 	}	
+	
+	public static int newNumber(){
+		Scanner in = new Scanner(System.in);
+		int number = in.nextInt();
+		return number;
+	}
 }
