@@ -2,13 +2,15 @@ package com.myproject.orm;
 
 import java.io.FileInputStream;
 import java.io.IOException;
+import java.io.UnsupportedEncodingException;
+import java.security.NoSuchAlgorithmException;
 import java.util.Properties;
 import java.util.Scanner;
 
 
 public class Main {
 
-	public static void main(String[] args){
+	public static void main(String[] args) throws NoSuchAlgorithmException, UnsupportedEncodingException{
 		FileInputStream labelsFile;
 		Properties property = new Properties();
 		

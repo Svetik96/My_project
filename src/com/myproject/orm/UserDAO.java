@@ -1,5 +1,7 @@
 package com.myproject.orm;
 
+import java.io.UnsupportedEncodingException;
+import java.security.NoSuchAlgorithmException;
 import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -7,16 +9,18 @@ import java.sql.Statement;
 
 public class UserDAO {
 	
-	public static void addUser(){
+	public static void addUser() throws NoSuchAlgorithmException, UnsupportedEncodingException{
 		Connection dbConnection = null;
 		Statement statement = null;
 				
 		User user = UserAction.createUser();
 		
+		String encryptPassword = Encryption.encrypt(user.getPassword());
+		
 		String addUser = "INSERT INTO users "
 				+ "(username, password, email, firstName, surname, role) "
 				+ "values ('"
-				+ user.getUsername() + "', '" + user.getPassword() + "', '" 
+				+ user.getUsername() + "', '" + encryptPassword + "', '" 
 				+ user.getEmail() + "', '" + user.getFirstName() + "', '" 
 				+ user.getSurname() + "', '" + user.getRole() + "')";
 				
