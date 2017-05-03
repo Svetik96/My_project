@@ -3,6 +3,7 @@ package com.myproject.orm;
 import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.UnsupportedEncodingException;
+import java.lang.reflect.InvocationTargetException;
 import java.security.NoSuchAlgorithmException;
 import java.util.Properties;
 import java.util.Scanner;
@@ -10,8 +11,11 @@ import java.util.Scanner;
 
 public class Main {
 
-	public static void main(String[] args) throws NoSuchAlgorithmException, UnsupportedEncodingException{
-		FileInputStream labelsFile;
+	public static void main(String[] args) throws NoSuchAlgorithmException, IllegalAccessException, IllegalArgumentException, InvocationTargetException, IOException{
+		
+		Reflection.refl();
+		
+/*		FileInputStream labelsFile;
 		Properties property = new Properties();
 		
 		while (true) {
@@ -27,10 +31,10 @@ public class Main {
 				System.out.println(property.getProperty("show_users_lbl"));
 				System.out.println(property.getProperty("change_role_lbl"));
 				System.out.println(property.getProperty("exit_lbl"));
-				System.out.println(property.getProperty("login_1"));
-				System.out.println(property.getProperty("login_2"));
-				System.out.println(property.getProperty("login_3"));
-				System.out.println(property.getProperty("login_4"));
+				System.out.println(property.getProperty("admin_login"));
+				System.out.println(property.getProperty("user_with_password"));
+				System.out.println(property.getProperty("user_with_numeric"));
+				System.out.println(property.getProperty("user_with_email"));
 			} catch(IOException e) {
 				System.out.println(e.getMessage());
 			}
@@ -58,16 +62,16 @@ public class Main {
 				UserDAO.changeAdminRole();
 				break;
 			case 7:
-				Autorization_1.Login_1();
+				Autorization.adminLogin();
 				break;
 			case 8:
-				Autorization_1.Login_2();
+				Autorization.userLoginPassword();
 				break;
 			case 9:
-				Autorization_1.Login_3();
+				Autorization.userLoginNumeric();
 				break;
 			case 10:
-				Autorization_1.Login_4();
+				Autorization.userLoginEmail();
 				break;
 			default:
 				break;
@@ -78,6 +82,6 @@ public class Main {
 			}
 			
 			System.out.println();
-		}
+		}*/
 	}
 }

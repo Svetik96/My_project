@@ -3,6 +3,7 @@ package com.myproject.orm;
 import java.io.UnsupportedEncodingException;
 import java.security.NoSuchAlgorithmException;
 import java.sql.Connection;
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
@@ -93,18 +94,19 @@ public class UserDAO {
 	
 	public static void getUserByUsername(){
 		Connection dbConnection = null;
-		Statement statement = null;
+		PreparedStatement preparedStatement = null;
 		
 		System.out.print("Username for search: ");
 		String usernameSearch = ScannerCommandAdapter.newUsername();
 		
-		String searchUser = "SELECT * FROM users WHERE username = " + "'" + usernameSearch + "'";
+		String searchUser = "SELECT * FROM users WHERE username = ?";
 		
 		try {
 			dbConnection = DBConnection.getConnection();
-			statement = dbConnection.createStatement();
+			preparedStatement = dbConnection.prepareStatement(searchUser);
+			preparedStatement.setString(1, usernameSearch);
 			
-			ResultSet rs = statement.executeQuery(searchUser);
+			ResultSet rs = preparedStatement.executeQuery();
 			
 			if(rs.next()) {
 				System.out.println("username: " + rs.getString("username"));
@@ -120,8 +122,8 @@ public class UserDAO {
 			System.out.println(e.getMessage());
 		} finally {
 			try {
-				if (statement != null) {
-					statement.close();
+				if (preparedStatement != null) {
+					preparedStatement.close();
 				}
 			} catch (SQLException e) {
 				System.out.println(e.getMessage());
@@ -217,26 +219,28 @@ public class UserDAO {
 	
 	public static void changeAdminRole(){
 		Connection dbConnection = null;
-		Statement statement = null;
+		PreparedStatement preparedStatement = null;
 		
 		System.out.print("Enter username: ");
 		String usernameSearch = ScannerCommandAdapter.newUsername();
 		System.out.print("Enter adminRole (true or false): ");
 		boolean adminRole = ScannerCommandAdapter.newRole();
 		
-		String updateUser = "UPDATE users SET role = '" + adminRole + "' WHERE username = " + "'" + usernameSearch + "'";
+		String updateUser = "UPDATE users SET role = ? WHERE username = ?";
 		
 		try {
 			dbConnection = DBConnection.getConnection();
-			statement = dbConnection.createStatement();
+			preparedStatement = dbConnection.prepareStatement(updateUser);
+			preparedStatement.setBoolean(1, adminRole);
+			preparedStatement.setString(2, usernameSearch);
 			
-			statement.executeUpdate(updateUser);
+			preparedStatement.executeUpdate();
 		} catch (SQLException e) {
 			System.out.println(e.getMessage());
 		} finally {
 			try {
-				if (statement != null) {
-					statement.close();
+				if (preparedStatement != null) {
+					preparedStatement.close();
 				}
 			} catch (SQLException e) {
 				System.out.println(e.getMessage());

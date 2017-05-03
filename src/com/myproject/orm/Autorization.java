@@ -8,9 +8,9 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 
-public class Autorization_1 {
+public class Autorization {
 	
-	public static void Login_1() throws NoSuchAlgorithmException, UnsupportedEncodingException{
+	public static void adminLogin() throws NoSuchAlgorithmException, UnsupportedEncodingException{
 		System.out.print("Username: ");
 		String login = ScannerCommandAdapter.newUsername();
 		System.out.print("Password: ");
@@ -68,7 +68,7 @@ public class Autorization_1 {
 		}
 	}
 	
-	public static void Login_2() throws NoSuchAlgorithmException, UnsupportedEncodingException{
+	public static void userLoginPassword() throws NoSuchAlgorithmException, UnsupportedEncodingException{
 		System.out.print("Username: ");
 		String login = ScannerCommandAdapter.newUsername();
 		System.out.print("Password: ");
@@ -118,7 +118,7 @@ public class Autorization_1 {
 		}
 	}
 	
-	public static void Login_3(){
+	public static void userLoginNumeric(){
 		final int systemNumber = 100;
 		int randomNumber = (int)(Math.random() * 100);
 		System.out.print("Hint: " + randomNumber + "\n");
@@ -173,7 +173,7 @@ public class Autorization_1 {
 		}
 	}
 	
-	public static void Login_4(){
+	public static void userLoginEmail(){
 		int randomNumber = 1000 + (int)(Math.random() * 9999);
 		System.out.print("Username: ");
 		String login = ScannerCommandAdapter.newUsername();
